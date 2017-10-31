@@ -5,7 +5,6 @@
 import path from 'path';
 import webpack from 'webpack';
 import { dependencies as externals } from './app/package.json';
-
 export default {
   externals: Object.keys(externals || {}),
 
@@ -19,7 +18,19 @@ export default {
           cacheDirectory: true
         }
       }
-    }]
+    },
+    {
+       test: /\.tsx?$/,
+       loader: 'awesome-typescript-loader',
+       options: {
+         configFileName: 'tsconfig.renderer.json'
+       }
+     },
+     {
+       test: /\.node$/,
+       use: 'node-loader'
+     }
+  ]
   },
 
   output: {
@@ -33,7 +44,7 @@ export default {
    * Determine the array of extensions that should be used to resolve modules.
    */
   resolve: {
-    extensions: ['.js', '.jsx', '.json'],
+    extensions: ['.js', '.jsx', '.json','.ts','.tsx'],
     modules: [
       path.join(__dirname, 'app'),
       'node_modules',
@@ -45,6 +56,6 @@ export default {
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production')
     }),
 
-    new webpack.NamedModulesPlugin(),
+    new webpack.NamedModulesPlugin()
   ],
 };

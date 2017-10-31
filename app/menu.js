@@ -1,5 +1,12 @@
 // @flow
 import { app, Menu, shell, BrowserWindow } from 'electron';
+import { checkForUpdates } from './autoUpdater';
+
+app.on('ready', () => {
+  checkForUpdates();
+  console.log('app on ready!');
+});
+
 
 export default class MenuBuilder {
   mainWindow: BrowserWindow;

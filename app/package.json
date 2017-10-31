@@ -1,18 +1,34 @@
 {
   "name": "electron-react-boilerplate",
   "productName": "electron-react-boilerplate",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Electron application boilerplate based on React, React Router, Webpack, React Hot Loader for rapid application development",
   "main": "./main.prod.js",
-  "author": {
-    "name": "C. T. Lin",
-    "email": "chentsulin@gmail.com",
-    "url": "https://github.com/chentsulin"
+  "author": "Matias Tucci <matiastucci@gmail.com>",
+  "license": "MIT",
+  "build": {
+    "appId": "com.matiastucci.autoupdate",
+    "productName": "AutoUpdater",
+    "mac": {
+      "category": "public.app-category.developer-tools"
+    },
+    "win": {
+      "icon": "icons/icon.ico",
+      "target": [
+        "squirrel"
+      ]
+    },
+    "squirrelWindows": {
+      "iconUrl": "https://raw.githubusercontent.com/matiastucci/electron-auto-updater-example/master/icons/icon.ico"
+    },
+    "linux": {
+      "target": [
+        "deb"
+      ]
+    }
   },
   "scripts": {
     "postinstall": "npm rebuild --runtime=electron --target=1.6.6 --disturl=https://atom.io/download/atom-shell --build-from-source"
   },
-  "license": "MIT",
-  "dependencies": {
-  }
+  "dependencies": {}
 }
